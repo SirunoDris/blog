@@ -31,9 +31,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('pios', PioController::class)
-    ->only(['index','store','update','edit','destroy',])
+    ->only(['index','store','update','edit','destroy','show',])
     ->middleware(['auth','verified']);
 
-//Route::post('/comment/{post}',[CommentController::class,'store'])->middleware(['auth','verified'])->name('');
+Route::post('/comment/{pio}',[CommentController::class,'store'])->middleware(['auth','verified'])->name('comment');
+Route::get('/pios/{id}', [PioController::class, 'show'])->name('pios.show');
 
 require __DIR__.'/auth.php';

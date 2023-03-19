@@ -58,8 +58,12 @@ class PioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Pio $pio)
-    {
-        //
+    { 
+        return view('pios.comment',[
+            'pio' => $pio,
+        ]);
+
+        // return redirect(route('pios.comment'));
     }
 
     /**

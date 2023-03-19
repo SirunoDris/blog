@@ -18,9 +18,6 @@
                     <x-nav-link :href="route('pios.index')" :active="request()->routeIs('pios.index')">
                         {{ __('PostPios') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('comment.index')" :active="request()->routeIs('pios.index')">
-                        {{ __('Comments') }}
-                    </x-nav-link>
                 </div>
             </div>
 

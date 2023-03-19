@@ -43,7 +43,7 @@
                             </x-slot>
                         </x-dropdown>
                 </div>
-                <p class="mt-4 text-2xl font-bold text-gray-900">{{$pio->title}}</p>
+                <a href="{{route('pios.show', $pio)}}" class="mt-4 text-2xl font-bold text-gray-900">{{$pio->title}}</a>
                 <p class="mt-4 text-lg text-gray-900">{{$pio->message}}</p>
                 
             </div>

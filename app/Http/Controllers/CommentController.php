@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Models\Pio;
 
 class CommentController extends Controller
 {
@@ -14,9 +15,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return view('comment.index',[
-            'comments'=> Comment::with('user')->latest()->get(),
-        ]);
+        // return view('pios.comment',[
+        //     'comments'=> Comment::All(),
+        // ]);
     }
 
     /**
@@ -35,9 +36,22 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Pio $pio ) //recoges el mensaje commentario y los datos del post
     {
-        //
+         //dd($request->message);
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+        $comment = new Comment();        
+        //crea una instaancia en el model 
+        // otra manera $comment = Comment::create("message"=> "vdsjjfidsjg","user_id"=>1,"pio_id"=>1);
+        // guardas los datos. Request es objeto de laravel
+        $comment->user_id = $request->user()->id;
+        $comment->pio_id = $pio->id;
+        $comment->message= $request->message;
+        $comment->save();
+        //return redirect(route('pios.index'))
+        return redirect(route('pios.show', $pio->id));
     }
 
     /**
