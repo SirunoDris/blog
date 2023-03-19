@@ -7,7 +7,7 @@
     <div class="mt-4 bg-white shadow-sm rounded-lg divide-y">
     
     @foreach ($pios as $pio)
-        @if($pio->user->is(auth()->user()) ||$pio->user->is(auth()->user()->role_id()) )
+        @if($pio->user->is(auth()->user()) ||Auth::user()->role_id == 1)
         <div class="p-6 flex space-x2">
             <div class="flex-1">
                 <div class="flex justify-between items-center">
