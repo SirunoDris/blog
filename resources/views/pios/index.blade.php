@@ -32,7 +32,7 @@
                             <small class="text-sm text-gray-600">&middot;{{__('edited')}}</small>
                         @endunless
                     </div>
-                    @if($pio->user->is(auth()->user()))
+                    @if($pio->user->is(auth()->user()) || Auth::user()->role_id == 1)
                         <x-dropdown>
                             <x-slot name="trigger">
                                 <button>
@@ -56,7 +56,7 @@
                         </x-dropdown>
                     @endif
                 </div>
-                <p class="mt-4 text-2xl font-bold text-gray-900">{{$pio->title}}</p>
+                <a href="{{route('pios.show', $pio)}}" class="mt-4 text-2xl font-bold text-gray-900">{{$pio->title}}</a>
                 <p class="mt-4 text-lg text-gray-900">{{$pio->message}}</p>
                 
             </div>
